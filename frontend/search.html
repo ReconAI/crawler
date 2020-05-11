@@ -1,0 +1,122 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body style="margin-top: 5vh;">
+    <div class='container-fluid'>
+        <div class="container">
+            <div class="row" style="margin-left: 5vw; justify-content: space-between;">
+                <div class="col-sm-5 col-md-5 col-lg-5">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                            style="width: 80% !important; margin-bottom: 2vh;" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Select project
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 80% !important;">
+                            <a class="dropdown-item" href="#">Item1</a>
+                            <a class="dropdown-item" href="#">Item2</a>
+                            <a class="dropdown-item" href="#">Item3</a>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary"
+                        style="width: 80% !important;margin-bottom: 2vh;">Delete project</button>
+                </div>
+                <div class="col-sm-5 col-md-5 col-lg-5">
+                    <button type="button" class="btn btn-secondary"
+                        style="width: 80% !important; margin-bottom: 2vh;">Add new project</button>
+                    <input class="form-control" type="text" placeholder="Add new project"
+                        style="width: 80% !important; margin-bottom: 2vh;">
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class='container' style="display: flex; flex-direction: column; align-items: center;">
+            <div class="input-group mb-3 col-sm-8 col-md-8 col-lg-8">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
+                </div>
+                <input type="text" class="form-control">
+            </div>
+            <div class="input-group mb-3 col-sm-8 col-md-8 col-lg-8">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">How many framesh</span>
+                </div>
+                <input type="text" class="form-control">
+            </div>
+        </div>
+        <br>
+        <div class='container border col-sm-8 col-md-8 col-lg-8'>
+            <p class="h5">Advanced parameters</p>
+            <div style='margin-left: 2vw'>
+                <p class="h5">Enabled?</p>
+                <div style='display: flex; flex-direction: row; justify-content: space-between; width: 40%;'>
+                    <div style="display: flex; flex-direction: column;">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                Parameter 1
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                Parameter 2
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                Parameter 3
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                Parameter 4
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                etc.
+                            </label>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <label class="form-check-label" for="defaultCheck1">
+                            Value(s) 1
+                        </label>
+                        <label class="form-check-label" for="defaultCheck1">
+                            Value(s) 2
+                        </label>
+                        <label class="form-check-label" for="defaultCheck1">
+                            Value(s) 3
+                        </label>
+                        <label class="form-check-label" for="defaultCheck1">
+                            Value(s) 4
+                        </label>
+                        <label class="form-check-label" for="defaultCheck1">
+                            etc.
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
