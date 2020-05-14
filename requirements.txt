@@ -1,7 +1,0 @@
-Django
-google-api-python-client
-youtube_dl
-PyVimeo
-djangorestframework
-arrow
-factory-boy
