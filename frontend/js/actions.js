@@ -56,3 +56,12 @@ $('#delete-project').click(function () {
     api_read_projects();
     alert('Project is deleted')
 })
+
+// on search
+$('#search-button').click(function () {
+    let project_id = dropdown_menu.find("option:selected").val();
+    let search_text = $('#search-input').val();
+    console.log(project_id);
+    console.log(search_text);
+
+})

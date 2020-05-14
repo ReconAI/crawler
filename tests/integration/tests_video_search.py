@@ -33,3 +33,15 @@ class VideoProjectApiTestCase(CommonTestCase):
         response = self.client.delete(f'/api/video-project/{vp.id}')
         self.assertEqual(response.status_code, rest_status.HTTP_204_NO_CONTENT)
         self.assertEqual(VideoProject.objects.count(), 1)
+
+
+class SearchVideoApiTestCase(CommonTestCase):
+
+    def test_ok_search(self):
+        vp = VideoProjectFactory.create(name='test2')
+        data_in = {
+            'search_text': 'cats'
+        }
+        response = self.client.post(f'/api/video-project/{vp.id}/search/', data=data_in)
+        self.assertEqual(response.status_code, rest_status.HTTP_200_OK)
+

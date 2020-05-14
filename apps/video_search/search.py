@@ -20,6 +20,11 @@ class TsdVimeoClient:
         )
 
     def search(self, vimeo_params):
+        """
+        https://developer.vimeo.com/api/reference/videos#search_videos
+        :param vimeo_params: are "query", "per_page",...
+        :return:
+        """
         params = copy.deepcopy(self.default_params)
         params.update(vimeo_params)
 
