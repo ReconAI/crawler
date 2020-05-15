@@ -1,4 +1,4 @@
-var serverHost = "http://192.168.88.245:8000/";
+var serverHost = 'http://'+location.hostname+':8000/';
 
 let dropdown_menu = $('#dropdown-menu-id');
 
