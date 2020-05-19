@@ -30,7 +30,7 @@ class VideoProjectApiTestCase(CommonTestCase):
         VideoProjectFactory.create(name='test1')
         vp = VideoProjectFactory.create(name='test2')
 
-        response = self.client.delete(f'/api/video-project/{vp.id}')
+        response = self.client.delete(f'/api/video-project/{vp.id}/')
         self.assertEqual(response.status_code, rest_status.HTTP_204_NO_CONTENT)
         self.assertEqual(VideoProject.objects.count(), 1)
 
