@@ -1,6 +1,9 @@
 import logging
 import copy
-from crawler.settings import VIMEO_ACCESS_TOKEN, VIMEO_CLIENT_ID, VIMEO_CLIENT_SECRET
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+from crawler.settings import VIMEO_ACCESS_TOKEN, VIMEO_CLIENT_ID, VIMEO_CLIENT_SECRET, YOUTUBE_API_DEVELOPER_KEY, \
+    YOUTUBE_API_VERSION, YOUTUBE_API_SERVICE_NAME
 import vimeo
 
 logger = logging.getLogger(__name__)
@@ -34,3 +37,20 @@ class TsdVimeoClient:
             return response.json()
         else:
             logger.warning('Bad response. Status code = %s' % response.status_code)
+
+
+class TsdYoutubeClient:
+    client = None
+    default_params = {
+    }
+
+    def __init__(self):
+        self.client = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=YOUTUBE_API_DEVELOPER_KEY)
+
+    def search(self, search_text):
+        search_response = self.client.search().list(
+            q=search_text,
+            part='id,snippet',
+            maxResults=10
+        ).execute()
+        return search_response
