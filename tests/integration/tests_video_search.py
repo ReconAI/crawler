@@ -1,9 +1,9 @@
-from apps.video_search.models import VideoProject
+from apps.video_search.models import VideoProject, VideoSearchResult
 from common.testing import CommonTestCase
 
 from rest_framework import status as rest_status
 
-from tests.integration.factories import VideoProjectFactory
+from tests.integration.factories import VideoProjectFactory, VideoSearchResultFactory
 
 
 class VideoProjectApiTestCase(CommonTestCase):
@@ -37,11 +37,23 @@ class VideoProjectApiTestCase(CommonTestCase):
 
 class SearchVideoApiTestCase(CommonTestCase):
 
-    def test_ok_search(self):
+    def test_run_search(self):
         vp = VideoProjectFactory.create(name='test2')
         data_in = {
             'search_text': 'cats'
         }
         response = self.client.post(f'/api/video-project/{vp.id}/search/', data=data_in)
         self.assertEqual(response.status_code, rest_status.HTTP_200_OK)
+        self.assertEqual(VideoSearchResult.objects.count(), 10)
+
+    def test_show_search_result(self):
+        vp = VideoProjectFactory.create(name='test2')
+        VideoSearchResultFactory.create(project=vp, source_link='http://google.com')
+
+        response = self.client.get(f'/api/video-project/{vp.id}/search/results/')
+        self.assertEqual(response.status_code, rest_status.HTTP_200_OK)
+        print(response.content)
+        content_dict = self.content_to_dict(response.content)
+        self.assertEqual(len(content_dict['results']), 1)
+
 

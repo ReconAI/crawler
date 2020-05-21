@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from apps.video_search.models import VideoProject
+from apps.video_search.models import VideoProject, VideoSearchResult
 from common.serializers import CommonSerializer
 
 
@@ -16,3 +16,12 @@ class VideoProjectSerializer(serializers.ModelSerializer):
 
 class SearchVideoSerializer(CommonSerializer):
     search_text = serializers.CharField()
+
+
+class SearchVideoResultsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VideoSearchResult
+        fields = (
+            'id',
+            'source_link',
+        )

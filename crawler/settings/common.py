@@ -130,4 +130,11 @@ YOUTUBE_API_DEVELOPER_KEY = 'AIzaSyA-yUD5PSS0UPopKSIGMa-CyR9YA8imQoo'
 YOUTUBE_API_SERVICE_NAME = 'youtube'
 YOUTUBE_API_VERSION = 'v3'
 
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
+
 
