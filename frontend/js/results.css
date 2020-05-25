@@ -1,0 +1,44 @@
+.resultItem {
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    margin-bottom: 4vh;
+}
+
+.player-button {
+    margin-bottom: 2vh;
+}
+
+.video-details-wrapper1 {
+    overflow: auto;
+    height: 60%;
+}
+
+.video-details-wrapper2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+
+.video-details-wrapper3 {
+    display: flex;
+    flex-direction: column;
+}
+
+.video-details-wrapper-values {
+    display: flex;
+    flex-direction: column;
+}
+
+.video-details-button-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-end;
+    margin-top: 4vh;
+}
+
+.confirm-discard-button {
+    width: 40% !important;
+    margin-bottom: 2vh;
+}
