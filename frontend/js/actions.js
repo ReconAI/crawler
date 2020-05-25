@@ -2,7 +2,7 @@ var serverHost = 'http://'+location.hostname+':8000/';
 
 let dropdown_menu = $('#dropdown-menu-id');
 
-function api_read_projects()
+function api_read_projects(dropdown_menu)
     {
         $.ajax({
         method: "GET",
@@ -25,7 +25,17 @@ function api_delete_project(project_id)
             .done(function (data) {
             });
     }
-
+function api_search(project_id, search_text)
+    {
+        $.ajax({
+            method: "POST",
+            url: serverHost + "api/video-project/" + project_id + "/search/",
+            data: {"search_text": search_text}
+        })
+            .done(function (data) {
+                console.log(data)
+            });
+    }
 // on  add new project
 $("#add_new_project").click(function () {
     let project_name = $("#add_new_project_input").val();
@@ -42,7 +52,7 @@ $("#add_new_project").click(function () {
 
 // on select
 dropdown_menu.on('show.bs.select', function (e, clickedIndex, isSelected, previousValue) {
-    api_read_projects();
+    api_read_projects(dropdown_menu);
 });
 
 dropdown_menu.on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
@@ -63,5 +73,6 @@ $('#search-button').click(function () {
     let search_text = $('#search-input').val();
     console.log(project_id);
     console.log(search_text);
+    api_search(project_id, search_text);
 
 })

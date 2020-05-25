@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="/static/js/results.css">
 </head>
 
 <body>
@@ -29,76 +30,13 @@
             <div class="row">
                 <div class="col-sm-5 col-md-5 col-lg-5">
                     <div class="dropdown">
-                        <select class="selectpicker" id="dropdown-menu-id" title="Choose one...">
+                        <select class="selectpicker" id="dropdown-menu-results-id" title="Choose one...">
                         </select>
-
                     </div>
                 </div>
             </div>
-            <div class='row border col-sm-12 col-md-12 col-lg-12'
-                style="padding-top: 2vh; padding-bottom: 2vh; margin-bottom: 4vh;">
-                <div class='col-sm-6'>
-                    <div class='row'>
-                        <div class='col-sm-10'>
-                            <p class="h5">Video 1</p>
-                            <div class="embed-responsive embed-responsive-16by9">
-                                <video>
-                                 <source src="/static/project.ogg">
-                                </video>
-{#                                <iframe class="embed-responsive-item"#}
-{#                                    src="static/project.mp4"></iframe>#}
-                            </div>
-                        </div>
-                        <div
-                            class='col-sm-2 col-md-2 col-lg-2 d-flex flex-column justify-content-center align-items-start'>
-                            <button type="button" class="btn btn-outline-secondary" style="margin-bottom: 2vh;"><img src="static/img/player.svg"></button>
-                            <button type="button" class="btn btn-outline-secondary"><img src="static/img/interface.svg"></button>
-                        </div>
-                    </div>
-                </div>
-                <div class='col-sm-6 col-md-6 col-lg-6'>
-                    <p class="h5">Video details:</p>
-                    <div class='container border' style="overflow: auto; height: 60%;">
-                        <div style='display: flex; flex-direction: row; justify-content: space-around;'>
-                            <div style="display: flex; flex-direction: column;">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    Parameter A
-                                </label>
-                                <label class="form-check-label" for="defaultCheck1">
-                                    Parameter B
-                                </label>
-                                <label class="form-check-label" for="defaultCheck1">
-                                    Parameter C
-                                </label>
-                                <label class="form-check-label" for="defaultCheck1">
-                                    etc.
-                                </label>
-                            </div>
-                            <div style="display: flex; flex-direction: column;">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    Value(s) A
-                                </label>
-                                <label class="form-check-label" for="defaultCheck1">
-                                    Value(s) B
-                                </label>
-                                <label class="form-check-label" for="defaultCheck1">
-                                    Value(s) C
-                                </label>
-                                <label class="form-check-label" for="defaultCheck1">
-                                    etc.
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container"
-                        style="display: flex; flex-direction: row; justify-content: space-around; align-items: flex-end; margin-top: 4vh;">
-                        <button type="button" class="btn btn-secondary"
-                            style="width: 40% !important;margin-bottom: 2vh;">Confirm</button>
-                        <button type="button" class="btn btn-secondary"
-                            style="width: 40% !important;margin-bottom: 2vh;">Discard</button>
-                    </div>
-                </div>
-            </div>
+        <div id="container-result">
+        </div>
 
 
     </div>
@@ -113,7 +51,12 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="static/js/actions.js"></script>
+    <script src="static/js/react_components.js" type="text/jsx"></script>
+    <script src="static/js/results.js" type="text/jsx"></script>
 </body>
 
 </html>

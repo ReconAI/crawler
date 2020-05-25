@@ -8,6 +8,7 @@ from common.views import CommonGenericView, JsonResponse
 
 class VideoProjectApi(CommonGenericView):
     serializer_class = VideoProjectSerializer
+    pagination_class = None
 
     def get_queryset(self):
         return VideoProject.objects.filter()
@@ -38,6 +39,9 @@ class SearchVideoApi(CommonGenericView):
         return data_out
 
     def save_data_to_db(self, project_id, vimeo_data, yt_data):
+        # delete previous results
+        VideoSearchResult.objects.filter(project_id=project_id).delete()
+
         for item in vimeo_data.get('data',[]):
             VideoSearchResult.objects.create(
                 project_id=project_id,
@@ -52,7 +56,7 @@ class SearchVideoApi(CommonGenericView):
         validated_data = serializer.validated_data
 
         search_text = validated_data['search_text']
-        project_id = self.kwargs['id']
+        project_id = self.kwargs['project_id']
         vimeo_client = TsdVimeoClient()
         vimeo_result = vimeo_client.search({'query': search_text})
         # yt_client = TsdYoutubeClient()
@@ -68,7 +72,7 @@ class SearchVideoResultsApi(CommonGenericView):
     serializer_class = SearchVideoResultsSerializer
 
     def get_queryset(self):
-        return VideoSearchResult.objects.filter()
+        return VideoSearchResult.objects.filter(project_id=self.kwargs['project_id'])
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
