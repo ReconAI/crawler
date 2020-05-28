@@ -2,6 +2,21 @@
 'use strict';
 
 class ResultItem extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handlePlayClick = this.handlePlayClick.bind(this);
+        this.handlePauseClick = this.handlePauseClick.bind(this);
+    }
+    handlePlayClick() {
+        let video_id = document.getElementById("video_"+this.props.item.id);
+        video_id.play();
+    }
+
+    handlePauseClick() {
+        let video_id = document.getElementById("video_"+this.props.item.id);
+        video_id.pause();
+    }
+
   render () {
     return (
         <div className='row border col-sm-12 col-md-12 col-lg-12 resultItem'>
@@ -10,15 +25,15 @@ class ResultItem extends React.Component {
                         <div className='col-sm-10'>
                             <p className='h5'><a href={this.props.item.source_link}>{this.props.item.source_link}</a></p>
                             <div className='embed-responsive embed-responsive-16by9'>
-                                <video>
-                                 <source src='/static/project.ogg'/>
+                                <video id={"video_"+this.props.item.id}>
+                                 <source src={this.props.item.preview_link} type="video/ogg"/>
                                 </video>
                             </div>
                         </div>
                         <div
                             className='col-sm-2 col-md-2 col-lg-2 d-flex flex-column justify-content-center align-items-start'>
-                            <button type='button' className='btn btn-outline-secondary player-button'><img src='static/img/player.svg'/></button>
-                            <button type='button' className='btn btn-outline-secondary'><img src='static/img/interface.svg'/></button>
+                            <button type='button' className='btn btn-outline-secondary player-button'><img src='static/img/player.svg' onClick={this.handlePauseClick}/></button>
+                            <button type='button' className='btn btn-outline-secondary'><img src='static/img/interface.svg' onClick={this.handlePlayClick}/></button>
                         </div>
                     </div>
                 </div>
