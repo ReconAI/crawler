@@ -24,4 +24,5 @@ class SearchVideoResultsSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'source_link',
+            'preview_link',
         )
