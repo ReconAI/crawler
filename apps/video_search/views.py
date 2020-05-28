@@ -1,6 +1,6 @@
-from rest_framework.pagination import PageNumberPagination
-
+from django.core.files import File
 from apps.video_search.models import VideoProject, VideoSearchResult
+from common.utils import PreviewDispatcher, VideoDownloader
 from apps.video_search.search import TsdVimeoClient, TsdYoutubeClient
 from apps.video_search.serializers import VideoProjectSerializer, SearchVideoSerializer, SearchVideoResultsSerializer
 from common.views import CommonGenericView, JsonResponse
@@ -42,11 +42,27 @@ class SearchVideoApi(CommonGenericView):
         # delete previous results
         VideoSearchResult.objects.filter(project_id=project_id).delete()
 
-        for item in vimeo_data.get('data',[]):
+        def _save_preview(link):
+            out_filepath, out_filename = VideoDownloader().download(link)
+            preview_link, preview_filename = PreviewDispatcher().make_video(out_filepath)
+
+            f = open(out_filepath, 'rb')
+            myfile = File(f, name=out_filename)
+            preview_file = File(open(preview_link, 'rb'), name=preview_filename)
             VideoSearchResult.objects.create(
                 project_id=project_id,
-                source_link = item['link']
+                source_link=link,
+                link=myfile,
+                preview_link=preview_file,
             )
+
+        for item in vimeo_data.get('data',[]):
+            _save_preview(item['link'])
+
+        for item in yt_data.get('items', []):
+            link = 'https://www.youtube.com/watch?v=%s' % item['id']['videoId']
+            _save_preview(link)
+
 
     def post(self, request, *args, **kwargs):
 
@@ -59,10 +75,10 @@ class SearchVideoApi(CommonGenericView):
         project_id = self.kwargs['project_id']
         vimeo_client = TsdVimeoClient()
         vimeo_result = vimeo_client.search({'query': search_text})
-        # yt_client = TsdYoutubeClient()
-        # result = yt_client.search('cats')
+        yt_client = TsdYoutubeClient()
+        yt_result = yt_client.search(search_text)
         #data_out = self.make_output_data(vimeo_result, None)
-        self.save_data_to_db(project_id, vimeo_result, None)
+        self.save_data_to_db(project_id, vimeo_result, yt_result)
         data_out = {}
         print(data_out)
         return JsonResponse(data_out)
