@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'oko5$gr_j5c$%%n(!&kwl#)=h=#%@lvag+#$szgc-3yj)lk1!x'
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-
 
 # Application definition
 
@@ -71,11 +69,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'crawler.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-
 
 
 # Password validation
@@ -96,7 +91,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -110,7 +104,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
@@ -119,8 +112,8 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 
 VIMEO_ACCESS_TOKEN = '16d8f42440b981adaa5e58bae264643c'
 VIMEO_CLIENT_ID = 'd46d2ffd7e4af7e4bfcee87bf4e1e999559f9221'
@@ -132,9 +125,13 @@ YOUTUBE_API_VERSION = 'v3'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
+AWS_ACCESS_KEY_ID = 'AKIARRD6RJOYFJDDNEGK'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'recon-crawler-files'
+AWS_DEFAULT_ACL = 'public-read'
+AWS_QUERYSTRING_AUTH = False
+
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
 }
-
-
