@@ -130,8 +130,25 @@ AWS_SECRET_ACCESS_KEY = 'YBrQFd7++qym562As4gFnVO21cjjoliPqBJaiEnT'
 AWS_STORAGE_BUCKET_NAME = 'recon-crawler-files'
 AWS_DEFAULT_ACL = 'public-read'
 AWS_QUERYSTRING_AUTH = False
+AWS_REGION_NAME = 'us-east-2'
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
 }
+
+# ---------------------AWS SQS------------------------
+SQS_CRAWLER_DOWNLOAD_VIDEO_FILE_QUEUE = ''
+
+from kombu.utils.url import safequote
+safe_aws_access_key = safequote(AWS_ACCESS_KEY_ID)
+safe_aws_secret_key = safequote(AWS_SECRET_ACCESS_KEY)
+
+CELERY_BROKER_URL = f"sqs://{safe_aws_access_key}:{safe_aws_secret_key}@"
+CELERY_BROKER_TRANSPORT_OPTIONS = {
+    'region': AWS_REGION_NAME,
+    'visibility_timeout': 3600,  # 1 hour
+    'polling_interval': 10,  # 10 seconds
+}
+
+CELERY_TASK_DEFAULT_QUEUE = '' # override this
