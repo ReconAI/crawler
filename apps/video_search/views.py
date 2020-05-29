@@ -1,9 +1,8 @@
-from django.core.files import File
 from apps.video_search.models import VideoProject, VideoSearchResult
-from common.utils import PreviewDispatcher, VideoDownloader
 from apps.video_search.search import TsdVimeoClient, TsdYoutubeClient
 from apps.video_search.serializers import VideoProjectSerializer, SearchVideoSerializer, SearchVideoResultsSerializer
 from common.views import CommonGenericView, JsonResponse
+from apps.video_search.tasks import task_save_source_video_and_create_preview
 
 
 class VideoProjectApi(CommonGenericView):
@@ -42,27 +41,19 @@ class SearchVideoApi(CommonGenericView):
         # delete previous results
         VideoSearchResult.objects.filter(project_id=project_id).delete()
 
-        def _save_preview(link):
-            out_filepath, out_filename = VideoDownloader().download(link)
-            preview_link, preview_filename = PreviewDispatcher().make_video(out_filepath)
-
-            f = open(out_filepath, 'rb')
-            myfile = File(f, name=out_filename)
-            preview_file = File(open(preview_link, 'rb'), name=preview_filename)
-            VideoSearchResult.objects.create(
-                project_id=project_id,
-                source_link=link,
-                link=myfile,
-                preview_link=preview_file,
-            )
-
+        # async saving
         for item in vimeo_data.get('data',[]):
-            _save_preview(item['link'])
+            task_save_source_video_and_create_preview.apply_async(kwargs={
+                'project_id': project_id,
+                'link':item['link'],
+            })
 
         for item in yt_data.get('items', []):
             link = 'https://www.youtube.com/watch?v=%s' % item['id']['videoId']
-            _save_preview(link)
-
+            task_save_source_video_and_create_preview.apply_async(kwargs={
+                'project_id': project_id,
+                'link': link,
+            })
 
     def post(self, request, *args, **kwargs):
 
