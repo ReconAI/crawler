@@ -74,5 +74,5 @@ $('#search-button').click(function () {
     console.log(project_id);
     console.log(search_text);
     api_search(project_id, search_text);
-
+    alert('Search process is started')
 })
