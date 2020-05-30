@@ -20,4 +20,5 @@ run(f'aws ecr get-login-password --region {aws_region} --profile=recon | docker 
 ctx = Context()
 with ctx.prefix(f'cd {DOCKERFILE_PATH}'):
     build_image(ctx, './Dockerfile', 'crawler')
+    build_image(ctx, './Dockerfile-workers', 'crawler-workers')
 
