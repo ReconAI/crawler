@@ -18,6 +18,14 @@ class ResultItem extends React.Component {
     }
 
   render () {
+    let poster;
+    if (this.props.item.preview_link == undefined){
+        poster = 'static/img/processing.png';
+    }
+    else {
+        poster='';
+    }
+
     return (
         <div className='row border col-sm-12 col-md-12 col-lg-12 resultItem'>
                 <div className='col-sm-6'>
@@ -25,7 +33,7 @@ class ResultItem extends React.Component {
                         <div className='col-sm-10'>
                             <p className='h5'><a href={this.props.item.source_link}>{this.props.item.source_link}</a></p>
                             <div className='embed-responsive embed-responsive-16by9'>
-                                <video id={"video_"+this.props.item.id}>
+                                <video id={"video_"+this.props.item.id} poster={poster}>
                                  <source src={this.props.item.preview_link} type="video/ogg"/>
                                 </video>
                             </div>
