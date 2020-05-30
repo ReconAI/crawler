@@ -43,16 +43,27 @@ class SearchVideoApi(CommonGenericView):
 
         # async saving
         for item in vimeo_data.get('data',[]):
+            link = item['link']
+            video_search_result = VideoSearchResult.objects.create(
+                project_id=project_id,
+                source_link=link,
+            )
             task_save_source_video_and_create_preview.apply_async(kwargs={
-                'project_id': project_id,
-                'link':item['link'],
+                'video_search_result_id': video_search_result.id,
             })
 
         for item in yt_data.get('items', []):
-            link = 'https://www.youtube.com/watch?v=%s' % item['id']['videoId']
+            video_id = item['id'].get('videoId')
+            if video_id is None:
+                continue
+            link = 'https://www.youtube.com/watch?v=%s' % video_id
+
+            video_search_result = VideoSearchResult.objects.create(
+                project_id=project_id,
+                source_link=link,
+            )
             task_save_source_video_and_create_preview.apply_async(kwargs={
-                'project_id': project_id,
-                'link': link,
+                'video_search_result_id': video_search_result.id,
             })
 
     def post(self, request, *args, **kwargs):
