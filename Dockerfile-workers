@@ -10,6 +10,5 @@ RUN pip install -r prod.txt
 ADD . /code/
 RUN rm /code/crawler/settings/local.py
 
-EXPOSE 8000
-CMD ["gunicorn","-c", "./crawler/gunicorn_conf.py",  "crawler.wsgi:application"]
-#CMD ["python", "-m", "http.server",  "8001"]
+CMD ["celery", "-A", "crawler",  "worker", "--loglevel", "INFO", "-Q", "dev-crawler-download-video-file-queue"]
+
