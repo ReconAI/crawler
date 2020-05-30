@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 class TsdVimeoClient:
     client = None
     default_params = {
-        'per_page': 20
+        'per_page': 5
     }
 
     def __init__(self):
@@ -51,6 +51,6 @@ class TsdYoutubeClient:
         search_response = self.client.search().list(
             q=search_text,
             part='id,snippet',
-            maxResults=20
+            maxResults=5
         ).execute()
         return search_response
