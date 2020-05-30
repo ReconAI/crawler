@@ -2,10 +2,11 @@ import os
 
 import cv2
 import os
+from random import choice
 
 import youtube_dl
 
-from crawler.settings import MEDIA_ROOT
+from crawler.settings import MEDIA_ROOT, PROXIES
 
 import uuid
 from django.core.files.storage import default_storage
@@ -74,22 +75,15 @@ class VideoDownloader:
         outname_pattern = str(filename) + '.mp4'
         out_filepath = os.path.join(MEDIA_ROOT, outname_pattern)
         self.ydl_opts = {
-            # 'proxy': 'http://QWtbaCjOgK:UJQv1Nzdz7@45.140.174.102:55867',
-            # 'proxy': 'http://192.168.88.245:30128',
             'outtmpl': out_filepath
         }
+        if PROXIES:
+            proxy = choice(PROXIES)
+            self.ydl_opts['proxy'] = proxy
+
         with youtube_dl.YoutubeDL(self.ydl_opts) as ydl:
-            # ydl.download(['https://vimeo.com/whitehousepost/cats-in-tanks'])
-            # ydl.download(['https://www.youtube.com/watch?v=WEkSYw3o5is'])
             ydl.download([url])
 
-
-        # s3_file = default_storage.open(outname_pattern, 'w')
-        # with open(out_filepath, 'rb') as f:
-        #     b_content = f.read()
-        #     s3_file.write(b_content)
-        #     s3_file.close()
-        # return s3_file.url
         return out_filepath, outname_pattern
 
 

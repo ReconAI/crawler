@@ -152,3 +152,7 @@ CELERY_BROKER_TRANSPORT_OPTIONS = {
 }
 
 CELERY_TASK_DEFAULT_QUEUE = '' # override this
+
+PROXIES = [
+  #'http://192.168.88.245:30128',
+]
