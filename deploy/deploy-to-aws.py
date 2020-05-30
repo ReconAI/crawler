@@ -2,7 +2,7 @@ import os
 
 from fabric import Connection
 
-DEV_EC2_HOST = 'ubuntu@18.216.169.240'
+DEV_EC2_HOST = 'ubuntu@3.134.103.218'
 
 DEPLOY_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(DEPLOY_DIR)
@@ -12,6 +12,7 @@ pem_filename = os.path.join(DEPLOY_DIR, 'recon.pem')
 image_registry_url = '105492073392.dkr.ecr.us-east-2.amazonaws.com'
 aws_region = 'us-east-2'
 build_tag_name = 'crawler'
+workers_build_tag_name = 'crawler-workers'
 
 conn = Connection(
     DEV_EC2_HOST, connect_kwargs={
@@ -31,3 +32,4 @@ with conn.prefix('cd /home/ubuntu/crawler/'):
     conn.run(f'docker rmi -f {image_registry_url}/{build_tag_name}', echo=True)  # delete old image
     conn.run(f'docker pull {image_registry_url}/{build_tag_name}', echo=True)
     conn.run(f'docker run -d -p 8000:8000 {image_registry_url}/{build_tag_name}', echo=True)
+    conn.run(f'docker run -d {image_registry_url}/{workers_build_tag_name}', echo=True)
