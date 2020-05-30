@@ -23,8 +23,9 @@ class PreviewDispatcher:
         self._create_preview_video(frame_filepath_list, preview_filepath)
         return preview_filepath, preview_filename
 
-    def _create_images(self, filename):
-        vidcap = cv2.VideoCapture(filename)
+    def _create_images(self, filepath):
+        vidcap = cv2.VideoCapture(filepath)
+        filename = os.path.basename(filepath)
 
         fps = vidcap.get(cv2.CAP_PROP_FPS)
         frame_count = int(vidcap.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -43,27 +44,31 @@ class PreviewDispatcher:
                 success, image = vidcap.read()
                 print('Read a new frame: ', success)
                 count += 1
-                frame_filepath = os.path.join(settings.MEDIA_ROOT, "frame%d.jpg" % count)
+                frame_filepath = os.path.join(settings.MEDIA_ROOT, f"frame-{filename}-{count}.jpg")
                 cv2.imwrite(frame_filepath, image)
                 frame_filepath_list.append(frame_filepath)
         return frame_filepath_list
 
     def _create_preview_video(self, frame_filepath_list, out_video_filepath):
         img_list = []
-        for frame_filepath in frame_filepath_list:
-            img = cv2.imread(frame_filepath)
-            height, width, layers = img.shape
-            size = (width, height)
-            img_list.append(img)
+        if frame_filepath_list:
+            for frame_filepath in frame_filepath_list:
+                img = cv2.imread(frame_filepath)
+                height, width, layers = img.shape
+                size = (width, height)
+                img_list.append(img)
 
-        fps = 10
-        #out_video_filepath=os.path.join(settings.MEDIA_ROOT, video_filename)
-        out = cv2.VideoWriter(out_video_filepath, cv2.VideoWriter_fourcc(*'VP80'), fps, size)
+            fps = 10
+            #out_video_filepath=os.path.join(settings.MEDIA_ROOT, video_filename)
+            out = cv2.VideoWriter(out_video_filepath, cv2.VideoWriter_fourcc(*'VP80'), fps, size)
 
-        print(len(img_list))
-        for i in range(len(img_list)):
-            out.write(img_list[i])
-        out.release()
+            print(len(img_list))
+            for i in range(len(img_list)):
+                out.write(img_list[i])
+            out.release()
+
+            for frame_filepath in frame_filepath_list:
+                os.remove(frame_filepath)
 
 #-----------------
 
