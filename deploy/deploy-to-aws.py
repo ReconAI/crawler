@@ -2,7 +2,7 @@ import os
 
 from fabric import Connection
 
-DEV_EC2_HOST = 'ubuntu@3.134.103.218'
+DEV_EC2_HOST = 'ubuntu@3.21.92.182'
 
 DEPLOY_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(DEPLOY_DIR)
