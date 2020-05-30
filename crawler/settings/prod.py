@@ -1,5 +1,17 @@
 from crawler.settings.common import *
 
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
+sentry_sdk.init(
+    dsn="https://2f7043e70e054555b2380583a7909a86@o60297.ingest.sentry.io/5258876",
+    integrations=[DjangoIntegration()],
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)
+
 
 DATABASES = {
     'default': {

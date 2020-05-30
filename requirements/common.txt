@@ -10,3 +10,4 @@ opencv-python==4.2.0.34
 django-storages==1.9.1
 celery==4.4.2
 boto3==1.13.16
+sentry-sdk==0.14.4
