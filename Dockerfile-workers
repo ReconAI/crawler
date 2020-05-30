@@ -10,5 +10,5 @@ RUN pip install -r prod.txt
 ADD . /code/
 RUN rm /code/crawler/settings/local.py
 
-CMD ["celery", "-A", "crawler",  "worker", "--loglevel", "INFO", "-Q", "dev-crawler-download-video-file-queue"]
+CMD ["/bin/bash"]
 
