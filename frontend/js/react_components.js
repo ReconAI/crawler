@@ -74,16 +74,19 @@ class ResultItem extends React.Component {
                         <div className='video-details-wrapper2'>
                             <div className='video-details-wrapper3'>
                                 <label className='form-check-label' htmlFor='defaultCheck1'>
-                                    Video title
+                                    Video title:
                                 </label>
                                 <label className='form-check-label' htmlFor='defaultCheck1'>
-                                    Published at
+                                    Published at:
                                 </label>
                                 <label className='form-check-label' htmlFor='defaultCheck1'>
-                                    Parameter C
+                                    Duration:
                                 </label>
                                 <label className='form-check-label' htmlFor='defaultCheck1'>
-                                    etc.
+                                    Width:
+                                </label>
+                                <label className='form-check-label' htmlFor='defaultCheck1'>
+                                    Height:
                                 </label>
                             </div>
                             <div className='video-details-wrapper-values'>
@@ -94,10 +97,13 @@ class ResultItem extends React.Component {
                                     {this.props.item.published_at}
                                 </label>
                                 <label className='form-check-label' htmlFor='defaultCheck1'>
-                                    Value(s) C
+                                    {this.props.item.duration}
                                 </label>
                                 <label className='form-check-label' htmlFor='defaultCheck1'>
-                                    etc.
+                                    {this.props.item.width}
+                                </label>
+                                <label className='form-check-label' htmlFor='defaultCheck1'>
+                                    {this.props.item.height}
                                 </label>
                             </div>
                         </div>

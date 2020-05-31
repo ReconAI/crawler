@@ -47,11 +47,17 @@ class SearchVideoApi(CommonGenericView):
             link = item['link']
             video_title = item['name']
             published_at = item['release_time']
+            duration = item['duration']
+            width = item['width']
+            height = item['height']
             video_search_result = VideoSearchResult.objects.create(
                 project_id=project_id,
                 source_link=link,
                 video_title=video_title,
-                published_at=published_at
+                published_at=published_at,
+                duration=duration,
+                width=width,
+                height=height
             )
             task_save_source_video_and_create_preview.apply_async(kwargs={
                 'video_search_result_id': video_search_result.id,

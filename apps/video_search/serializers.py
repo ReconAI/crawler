@@ -27,6 +27,9 @@ class SearchVideoResultsSerializer(serializers.ModelSerializer):
             'preview_link',
             'video_title',
             'published_at',
+            'duration',
+            'width',
+            'height',
         )
 
 

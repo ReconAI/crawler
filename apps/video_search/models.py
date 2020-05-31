@@ -21,6 +21,9 @@ class VideoSearchResult(models.Model):
     status = models.CharField(choices=VideoStatusEnum.for_choice(), null=True, max_length=100)
     video_title = models.CharField(max_length=255, null=True)
     published_at = models.DateTimeField(null=True)
+    duration = models.IntegerField(null=True, help_text='Video duration')
+    width = models.IntegerField(null=True)
+    height = models.IntegerField(null=True)
 
     class Meta:
         db_table = "apps_video_search__search_result"
