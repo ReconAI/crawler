@@ -26,3 +26,11 @@ class SearchVideoResultsSerializer(serializers.ModelSerializer):
             'source_link',
             'preview_link',
         )
+
+
+class SearchVideoResultStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VideoSearchResult
+        fields = (
+            'status',
+        )

@@ -1,6 +1,7 @@
 from apps.video_search.models import VideoProject, VideoSearchResult
 from apps.video_search.search import TsdVimeoClient, TsdYoutubeClient
-from apps.video_search.serializers import VideoProjectSerializer, SearchVideoSerializer, SearchVideoResultsSerializer
+from apps.video_search.serializers import VideoProjectSerializer, SearchVideoSerializer, SearchVideoResultsSerializer, \
+    SearchVideoResultStatusSerializer
 from common.views import CommonGenericView, JsonResponse
 from apps.video_search.tasks import task_save_source_video_and_create_preview
 
@@ -85,6 +86,7 @@ class SearchVideoApi(CommonGenericView):
         print(data_out)
         return JsonResponse(data_out)
 
+
 class SearchVideoResultsApi(CommonGenericView):
     lookup_field = 'project_id'
     serializer_class = SearchVideoResultsSerializer
@@ -94,4 +96,15 @@ class SearchVideoResultsApi(CommonGenericView):
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
+
+
+class SearchVideoResultStatusApi(CommonGenericView):
+    lookup_field = 'id'
+    serializer_class = SearchVideoResultStatusSerializer
+
+    def get_queryset(self):
+        return VideoSearchResult.objects.filter()
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
 
