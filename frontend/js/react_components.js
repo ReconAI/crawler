@@ -74,7 +74,7 @@ class ResultItem extends React.Component {
                         <div className='video-details-wrapper2'>
                             <div className='video-details-wrapper3'>
                                 <label className='form-check-label' htmlFor='defaultCheck1'>
-                                    Parameter A
+                                    Video title
                                 </label>
                                 <label className='form-check-label' htmlFor='defaultCheck1'>
                                     Parameter B
@@ -88,7 +88,7 @@ class ResultItem extends React.Component {
                             </div>
                             <div className='video-details-wrapper-values'>
                                 <label className='form-check-label' htmlFor='defaultCheck1'>
-                                    Value(s) A
+                                    {this.props.item.video_title}
                                 </label>
                                 <label className='form-check-label' htmlFor='defaultCheck1'>
                                     Value(s) B
