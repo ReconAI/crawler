@@ -1,7 +1,12 @@
-function api_read_results(project_id) {
+function api_read_results(project_id, custom_url) {
+    let url = serverHost + "api/video-project/" + project_id + '/search/results/';
+    if (custom_url) {
+        url = custom_url
+    }
+
     $.ajax({
         method: "GET",
-        url: serverHost + "api/video-project/" + project_id + '/search/results/'
+        url: url
     })
         .done(function (data) {
             // $('#container-result').html('');

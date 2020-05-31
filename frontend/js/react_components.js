@@ -112,15 +112,47 @@ class ResultItem extends React.Component {
     );
   }
 }
+
 class PrevNext extends React.Component {
-  render() {
-    return (
-      <div>
-        <a href={this.props.previous}>Previous</a> &nbsp;
-        <a href={this.props.next}>Next</a>
-      </div>
-    );
-  }
+    constructor(props) {
+        super(props);
+        this.handleNextClick = this.handleNextClick.bind(this);
+        this.handlePreviousClick = this.handlePreviousClick.bind(this);
+    }
+    handleNextClick(event) {
+        event.preventDefault();
+        api_read_results(null, this.props.next)
+
+    }
+    handlePreviousClick(event) {
+        event.preventDefault();
+        api_read_results(null, this.props.previous)
+    }
+
+    render() {
+        let href_next='';
+        let disabled_next = '';
+        let disabled_previous = '';
+        if (this.props.next) {
+            href_next="#"
+        }
+        else {
+            disabled_next='disabled'
+        }
+        let href_previous='';
+        if (this.props.previous) {
+            href_previous="#"
+        }
+        else {
+            disabled_previous='disabled'
+        }
+        return (
+            <div>
+                <a href="#" onClick={this.handlePreviousClick} className={"btn " + disabled_previous}>Previous</a> &nbsp;
+                <a href="#" onClick={this.handleNextClick} className={"btn " + disabled_next}>Next</a>
+            </div>
+        );
+    }
 }
 
 class SearchResult extends React.Component {
@@ -130,7 +162,7 @@ class SearchResult extends React.Component {
           {this.props.data['results'].map(item => {
             return <ResultItem item={item} key={item.source_link}/>
           })}
-          <PrevNext next={this.props.data.next} prev={this.props.data.previous}/>
+          <PrevNext next={this.props.data.next} previous={this.props.data.previous}/>
         </div>
     );
   }
