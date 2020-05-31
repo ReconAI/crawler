@@ -6,6 +6,8 @@ class ResultItem extends React.Component {
         super(props);
         this.handlePlayClick = this.handlePlayClick.bind(this);
         this.handlePauseClick = this.handlePauseClick.bind(this);
+        this.handleConfirmClick = this.handleConfirmClick.bind(this);
+        this.handleDiscardClick = this.handleDiscardClick.bind(this);
     }
     handlePlayClick() {
         let video_id = document.getElementById("video_"+this.props.item.id);
@@ -15,6 +17,27 @@ class ResultItem extends React.Component {
     handlePauseClick() {
         let video_id = document.getElementById("video_"+this.props.item.id);
         video_id.pause();
+    }
+    handleConfirmClick() {
+        $.ajax({
+            method: "PUT",
+            url: serverHost + "api/search-results/"+this.props.item.id+ "/status/",
+            data: {"status": 'CONFIRMED'}
+        }).done(function (data) {
+            console.log(data);
+            alert('Video is confirmed')
+        });
+    }
+
+    handleDiscardClick() {
+        $.ajax({
+            method: "PUT",
+            url: serverHost + "api/search-results/"+this.props.item.id+ "/status/",
+            data: {"status": 'DISCARDED'}
+        }).done(function (data) {
+            console.log(data);
+            alert('Video is discarded')
+        });
     }
 
   render () {
@@ -80,8 +103,8 @@ class ResultItem extends React.Component {
                         </div>
                     </div>
                     <div className='container video-details-button-wrapper'>
-                        <button type='button' className='btn btn-secondary confirm-discard-button'>Confirm</button>
-                        <button type='button' className='btn btn-secondary confirm-discard-button'>Discard</button>
+                        <button type='button' className='btn btn-secondary confirm-discard-button' onClick={this.handleConfirmClick}>Confirm</button>
+                        <button type='button' className='btn btn-secondary confirm-discard-button' onClick={this.handleDiscardClick}>Discard</button>
                     </div>
                 </div>
             </div>
