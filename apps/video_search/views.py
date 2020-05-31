@@ -46,10 +46,12 @@ class SearchVideoApi(CommonGenericView):
         for item in vimeo_data.get('data',[]):
             link = item['link']
             video_title = item['name']
+            published_at = item['release_time']
             video_search_result = VideoSearchResult.objects.create(
                 project_id=project_id,
                 source_link=link,
-                video_title=video_title
+                video_title=video_title,
+                published_at=published_at
             )
             task_save_source_video_and_create_preview.apply_async(kwargs={
                 'video_search_result_id': video_search_result.id,
@@ -58,6 +60,7 @@ class SearchVideoApi(CommonGenericView):
         for item in yt_data.get('items', []):
             video_id = item['id'].get('videoId')
             video_title = item.get('snippet', {}).get('title','')
+            published_at = item.get('snippet', {}).get('publishTime')
             if video_id is None:
                 continue
             link = 'https://www.youtube.com/watch?v=%s' % video_id
@@ -66,6 +69,7 @@ class SearchVideoApi(CommonGenericView):
                 project_id=project_id,
                 source_link=link,
                 video_title=video_title,
+                published_at=published_at
             )
             task_save_source_video_and_create_preview.apply_async(kwargs={
                 'video_search_result_id': video_search_result.id,

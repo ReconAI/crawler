@@ -77,7 +77,7 @@ class ResultItem extends React.Component {
                                     Video title
                                 </label>
                                 <label className='form-check-label' htmlFor='defaultCheck1'>
-                                    Parameter B
+                                    Published at
                                 </label>
                                 <label className='form-check-label' htmlFor='defaultCheck1'>
                                     Parameter C
@@ -91,7 +91,7 @@ class ResultItem extends React.Component {
                                     {this.props.item.video_title}
                                 </label>
                                 <label className='form-check-label' htmlFor='defaultCheck1'>
-                                    Value(s) B
+                                    {this.props.item.published_at}
                                 </label>
                                 <label className='form-check-label' htmlFor='defaultCheck1'>
                                     Value(s) C
