@@ -56,4 +56,18 @@ class SearchVideoApiTestCase(CommonTestCase):
         content_dict = self.content_to_dict(response.content)
         self.assertEqual(len(content_dict['results']), 1)
 
+class SearchVideoResultStatusApiTestCase(CommonTestCase):
+
+    def test_ok(self):
+        vp = VideoProjectFactory.create(name='test2')
+        vsr = VideoSearchResultFactory.create(project=vp, source_link='http://google.com')
+        data_in = {
+            'status': 'CONFIRMED'
+        }
+        response = self.client.put(f'/api/search-results/{vsr.id}/status/', data=data_in)
+        self.assertEqual(response.status_code, rest_status.HTTP_200_OK)
+        vsr = VideoSearchResult.objects.get()
+        self.assertEqual(vsr.status, 'CONFIRMED')
+
+
 
