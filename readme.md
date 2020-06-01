@@ -9,7 +9,7 @@ The web part is responsible for finding and displaying videos.
 Workers download and create preview video.
 All created files are stored on AWS S3.
 
-The project uses AWS EC2, AWS SQS, AWS S3, AWS ECR
+The project uses AWS EC2, AWS SQS, AWS S3, AWS ECR, AWS RDS
 
 ## Deploy
 Deployment project is semi-manual.
