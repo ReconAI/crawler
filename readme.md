@@ -18,6 +18,10 @@ build-image - creates an image and puts it in AWS ECR
 deploy-to-aws - downloads images and deploys on a specific EC2 instance
 
 
+## Settings
+Settings are located at "crawler/settings"
+
+
 ### Recommendations:
 Make deploy using a CI/CD system (e.g. Gitlab) at future
 
