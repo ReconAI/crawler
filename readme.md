@@ -20,6 +20,12 @@ deploy-to-aws - downloads images and deploys on a specific EC2 instance
 
 ## Settings
 Settings are located at "crawler/settings"
+The main ones are
+
+AWS_ACCESS_KEY_ID
+DATABASES
+PROXIES
+AWS_SECRET_ACCESS_KEY
 
 
 ### Recommendations:
