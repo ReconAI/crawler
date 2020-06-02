@@ -57,6 +57,9 @@ AWS_SECRET_ACCESS_KEY
 Run tests
 `python manage.py test --settings=crawler.settings.local`
 
+## Performance
+Performance depends from proxy lists (downloading part) and type of AWS instance (creating "preview" part)
+
 ### Recommendations:
 Make deploy using a CI/CD system (e.g. Gitlab/Github) at future
 
