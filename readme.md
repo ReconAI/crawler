@@ -53,6 +53,10 @@ DATABASES
 PROXIES  
 AWS_SECRET_ACCESS_KEY  
 
+## Tests
+Run tests
+`python manage.py test --settings=crawler.settings.local`
+
 ### Recommendations:
 Make deploy using a CI/CD system (e.g. Gitlab/Github) at future
 

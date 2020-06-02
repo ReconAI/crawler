@@ -1,3 +1,5 @@
+from django.test import override_settings
+
 from apps.video_search.models import VideoProject, VideoSearchResult
 from common.testing import CommonTestCase
 
@@ -37,6 +39,7 @@ class VideoProjectApiTestCase(CommonTestCase):
 
 class SearchVideoApiTestCase(CommonTestCase):
 
+    @override_settings(SEARCH_YOUTUBE_AMOUNT=5, SEARCH_VIMEO_AMOUNT=5)
     def test_run_search(self):
         vp = VideoProjectFactory.create(name='test2')
         data_in = {

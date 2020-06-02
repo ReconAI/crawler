@@ -1,9 +1,7 @@
 import logging
 import copy
 from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
-from crawler.settings import VIMEO_ACCESS_TOKEN, VIMEO_CLIENT_ID, VIMEO_CLIENT_SECRET, YOUTUBE_API_DEVELOPER_KEY, \
-    YOUTUBE_API_VERSION, YOUTUBE_API_SERVICE_NAME, SEARCH_VIMEO_AMOUNT, SEARCH_YOUTUBE_AMOUNT
+from django.conf import settings
 import vimeo
 
 logger = logging.getLogger(__name__)
@@ -11,15 +9,15 @@ logger = logging.getLogger(__name__)
 
 class TsdVimeoClient:
     client = None
-    default_params = {
-        'per_page': SEARCH_VIMEO_AMOUNT
-    }
 
     def __init__(self):
+        self.default_params = {
+            'per_page': settings.SEARCH_VIMEO_AMOUNT
+        }
         self.client = vimeo.VimeoClient(
-            token=VIMEO_ACCESS_TOKEN,
-            key=VIMEO_CLIENT_ID,
-            secret=VIMEO_CLIENT_SECRET
+            token=settings.VIMEO_ACCESS_TOKEN,
+            key=settings.VIMEO_CLIENT_ID,
+            secret=settings.VIMEO_CLIENT_SECRET
         )
 
     def search(self, vimeo_params):
@@ -45,12 +43,12 @@ class TsdYoutubeClient:
     }
 
     def __init__(self):
-        self.client = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=YOUTUBE_API_DEVELOPER_KEY)
+        self.client = build(settings.YOUTUBE_API_SERVICE_NAME, settings.YOUTUBE_API_VERSION, developerKey=settings.YOUTUBE_API_DEVELOPER_KEY)
 
     def search(self, search_text):
         search_response = self.client.search().list(
             q=search_text,
             part='id,snippet',
-            maxResults=SEARCH_YOUTUBE_AMOUNT
+            maxResults=settings.SEARCH_YOUTUBE_AMOUNT
         ).execute()
         return search_response
