@@ -34,23 +34,25 @@ SQS_CRAWLER_DOWNLOAD_VIDEO_FILE_QUEUE_NAME
 `DJANGO_SETTINGS_MODULE=crawler.settings.local celery -A crawler worker --loglevel=INFO -Q "your_SQS_CRAWLER_DOWNLOAD_VIDEO_FILE_QUEUE_NAME"`
 
 
-## Deploy
-Deployment project is semi-manual.
-2 scripts are used:
-build-image - creates an image and puts it in AWS ECR
-deploy-to-aws - downloads images and deploys on a specific EC2 instance
-
+## Installation to production
+1) Create AWS EC2 instance  
+2) Install docker (`apt-get install docker.io`)  
+3) Install awscli (`pip install awscli`)  
+4) Add keys for awscli to .aws folder  
+5) Change DEV_EC2_HOST at "deploy/deploy-to-aws.py"  
+6) Run deploy-to-aws (`python deploy/deploy-to-aws.py`)  
+6*) If you want to create new build run `python deploy/build-image.py`.  
+This script create an image and puts it in AWS ECR  
 
 ## Settings
 Settings are located at "crawler/settings"
 The main ones are
 
-AWS_ACCESS_KEY_ID
-DATABASES
-PROXIES
-AWS_SECRET_ACCESS_KEY
-
+AWS_ACCESS_KEY_ID  
+DATABASES  
+PROXIES  
+AWS_SECRET_ACCESS_KEY  
 
 ### Recommendations:
-Make deploy using a CI/CD system (e.g. Gitlab) at future
+Make deploy using a CI/CD system (e.g. Gitlab/Github) at future
 
