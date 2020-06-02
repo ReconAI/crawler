@@ -60,6 +60,9 @@ Run tests
 ## Performance
 Performance depends from proxy lists (downloading part) and type of AWS instance (creating "preview" part)
 
+## Video
+https://www.dropbox.com/s/17vz6j6gfg6nn06/Recon.%20Report%202020-05-31.mp4
+
 ### Recommendations:
 Make deploy using a CI/CD system (e.g. Gitlab/Github) at future
 
