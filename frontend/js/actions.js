@@ -76,3 +76,9 @@ $('#search-button').click(function () {
     api_search(project_id, search_text);
     alert('Search process is started')
 })
+
+// filters
+$('.input-group.date').datepicker({
+    format: "yyyy-mm-dd",
+    clearBtn: true
+});
