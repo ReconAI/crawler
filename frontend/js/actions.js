@@ -71,8 +71,12 @@ $('#delete-project').click(function () {
 $('#search-button').click(function () {
     let project_id = dropdown_menu.find("option:selected").val();
     let search_text = $('#search-input').val();
-    console.log(project_id);
-    console.log(search_text);
+    let filters = {};
+    debugger;
+    if ($('#license-checkbox').is(':checked')){
+        filters['license'] = $('#license-select').find("option:selected").val();
+    }
+    console.log(filters);
     api_search(project_id, search_text);
     alert('Search process is started')
 })
