@@ -213,10 +213,20 @@
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">
-                                Video Duration
-                            </label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <input type="checkbox" aria-label="Checkbox for license" id="yt-video-duration-checkbox">
+                                    </div>
+                                </div>
+
+                                <select class="selectpicker" title="Duration..." id="yt-video-duration-select">
+                                    <option value="any">Any</option>
+                                    <option value="long">Long (longer than 20 minutes)</option>
+                                    <option value="medium">Medium (between 4 min and 20 minutes)</option>
+                                    <option value="short">Short (less than 4 min)</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-check">
                             <div class="input-group mb-3">
