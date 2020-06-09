@@ -201,10 +201,20 @@
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">
-                                Video Definition
-                            </label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <input type="checkbox" aria-label="Checkbox for Video Definition"
+                                               id="yt-video-definition-checkbox">
+                                    </div>
+                                </div>
+                                <select class="selectpicker" title="Video Definition..."
+                                        id="yt-video-definition-select">
+                                    <option value="any">Any</option>
+                                    <option value="high">HD</option>
+                                    <option value="standard">SD</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-check">
                             <div class="input-group mb-3">
@@ -220,7 +230,7 @@
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
-                                        <input type="checkbox" aria-label="Checkbox for license" id="yt-video-duration-checkbox">
+                                        <input type="checkbox" aria-label="Checkbox for Duration" id="yt-video-duration-checkbox">
                                     </div>
                                 </div>
 
@@ -249,28 +259,6 @@
                         </div>
                     </div>
                     <div style="display: flex; flex-direction: column;">
-                        <label class="form-check-label" for="defaultCheck1">
-                            ALL (default)
-                        </label>
-                        <label class="form-check-label" for="defaultCheck1">
-                            OFF (default)
-                        </label>
-                        <label class="form-check-label" for="defaultCheck1">
-                            OFF (default)
-
-                        </label>
-                        <label class="form-check-label" for="defaultCheck1">
-                            OFF (default)
-                        </label>
-                        <label class="form-check-label" for="defaultCheck1">
-                            OFF (default)
-                        </label>
-                        <label class="form-check-label" for="defaultCheck1">
-                            OFF (default)
-                        </label>
-                        <label class="form-check-label" for="defaultCheck1">
-                            HD and SD
-                        </label>
                     </div>
                 </div>
             </div>
