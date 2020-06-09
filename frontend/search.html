@@ -207,10 +207,14 @@
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">
-                                Video Dimension
-                            </label>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                  <input type="checkbox" aria-label="Video Dimension checkbox" checked disabled>
+                                </div>
+                              </div>
+                              <input type="text" class="form-control" aria-label="Video Dimension" placeholder="Video Dimension..." value="2D" readonly>
+                            </div>
                         </div>
                         <div class="form-check">
                             <div class="input-group mb-3">
@@ -266,9 +270,6 @@
                         </label>
                         <label class="form-check-label" for="defaultCheck1">
                             HD and SD
-                        </label>
-                        <label class="form-check-label" for="defaultCheck1">
-                            2D
                         </label>
                     </div>
                 </div>
