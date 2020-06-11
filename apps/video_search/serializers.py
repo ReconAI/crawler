@@ -31,6 +31,7 @@ class SearchVideoYoutubeFiltersSerializer(CommonSerializer):
     published_before = serializers.DateField(required=False)
     published_after = serializers.DateField(required=False)
     safe_search = serializers.ChoiceField(choices=SafeSearchEnum.for_choice(), required=False)
+    video_category_id = serializers.IntegerField(required=False)
 
 class SearchVideoSerializer(CommonSerializer):
     search_text = serializers.CharField()
