@@ -86,3 +86,13 @@ $('.input-group.date').datepicker({
     format: "yyyy-mm-dd",
     clearBtn: true
 });
+
+$('.input-group .date').datepicker({
+    format: "yyyy-mm-dd",
+    clearBtn: true
+});
+
+// $('.date').datepicker({
+//     format: "yyyy-mm-dd",
+//     clearBtn: true
+// });
