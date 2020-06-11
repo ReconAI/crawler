@@ -45,10 +45,15 @@ class TsdYoutubeClient:
     def __init__(self):
         self.client = build(settings.YOUTUBE_API_SERVICE_NAME, settings.YOUTUBE_API_VERSION, developerKey=settings.YOUTUBE_API_DEVELOPER_KEY)
 
-    def search(self, search_text):
-        search_response = self.client.search().list(
+    def search(self, search_text:str, latitude:float=None, longitude:float=None, location_radius:int=None):
+        params = dict(
             q=search_text,
+            type='video',
             part='id,snippet',
             maxResults=settings.SEARCH_YOUTUBE_AMOUNT
-        ).execute()
+        )
+        if latitude and longitude and location_radius:
+            params['location'] = '%s,%s' % (latitude, longitude)
+            params['locationRadius'] = '%skm' % location_radius
+        search_response = self.client.search().list(**params).execute()
         return search_response

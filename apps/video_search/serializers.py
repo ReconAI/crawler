@@ -14,9 +14,18 @@ class VideoProjectSerializer(serializers.ModelSerializer):
         )
         read_only_fields = ('id',)
 
+class SearchVideoVimeoFiltersSerializer(CommonSerializer):
+    video_license = serializers.CharField(source='license')
+
+class SearchVideoYoutubeFiltersSerializer(CommonSerializer):
+    latitude = serializers.FloatField(required=False)
+    longitude = serializers.FloatField(required=False)
+    location_radius = serializers.IntegerField(required=False)
+
 class SearchVideoSerializer(CommonSerializer):
     search_text = serializers.CharField()
-
+    #vimeo_filters = SearchVideoVimeoFiltersSerializer()
+    yt_filters = SearchVideoYoutubeFiltersSerializer()
 
 class SearchVideoResultsSerializer(serializers.ModelSerializer):
     class Meta:
