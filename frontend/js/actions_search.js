@@ -15,6 +15,7 @@ $('#search-button').click(function () {
     let search_text = $('#search-input').val();
     let yt_filters = {};
     let vimeo_filters = {};
+    let video_amount = $('#video-amount-select').find("option:selected").val();
 
     if ($('#license-checkbox').is(':checked')){
         vimeo_filters['license'] = $('#license-select').find("option:selected").val();
@@ -48,7 +49,5 @@ $('#search-button').click(function () {
         yt_filters['video_license'] = $('#yt-license-select').find("option:selected").val();
     }
 
-    // console.log(yt_filters);
-    // console.log(vimeo_filters);
-    api_search(project_id, search_text, yt_filters, vimeo_filters);
+    api_search(project_id, search_text, yt_filters, vimeo_filters, video_amount);
 })

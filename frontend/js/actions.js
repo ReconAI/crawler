@@ -26,10 +26,11 @@ function api_delete_project(project_id)
             });
     }
 
-function api_search(project_id, search_text, yt_filters, vimeo_filters) {
+function api_search(project_id, search_text, yt_filters, vimeo_filters, video_amount) {
 
     let data_in = {
         "search_text": search_text,
+        "video_amount": video_amount,
         'vimeo_filters': {},
         'yt_filters': {},
     };

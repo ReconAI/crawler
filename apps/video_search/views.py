@@ -89,11 +89,12 @@ class SearchVideoApi(CommonGenericView):
         validated_data = serializer.validated_data
 
         search_text = validated_data['search_text']
+        video_amount = validated_data['video_amount']
         project_id = self.kwargs['project_id']
         yt_filters = validated_data['yt_filters']
-        vimeo_client = TsdVimeoClient()
+        vimeo_client = TsdVimeoClient(video_amount)
         vimeo_result = vimeo_client.search({'query': search_text})
-        yt_client = TsdYoutubeClient()
+        yt_client = TsdYoutubeClient(video_amount)
         yt_result = yt_client.search(search_text, **yt_filters)
         #data_out = self.make_output_data(vimeo_result, None)
         self.save_data_to_db(project_id, vimeo_result, yt_result)

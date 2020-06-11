@@ -58,6 +58,7 @@ class SearchVideoYoutubeFiltersSerializer(CommonSerializer):
 
 class SearchVideoSerializer(CommonSerializer):
     search_text = serializers.CharField()
+    video_amount = serializers.IntegerField()
     #vimeo_filters = SearchVideoVimeoFiltersSerializer()
     yt_filters = SearchVideoYoutubeFiltersSerializer()
 

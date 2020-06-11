@@ -12,9 +12,9 @@ logger = logging.getLogger(__name__)
 class TsdVimeoClient:
     client = None
 
-    def __init__(self):
+    def __init__(self, video_amount: int = None):
         self.default_params = {
-            'per_page': settings.SEARCH_VIMEO_AMOUNT
+            'per_page': video_amount if video_amount else settings.SEARCH_VIMEO_AMOUNT
         }
         self.client = vimeo.VimeoClient(
             token=settings.VIMEO_ACCESS_TOKEN,
@@ -44,8 +44,9 @@ class TsdYoutubeClient:
     default_params = {
     }
 
-    def __init__(self):
+    def __init__(self, video_amount: int = None):
         self.client = build(settings.YOUTUBE_API_SERVICE_NAME, settings.YOUTUBE_API_VERSION, developerKey=settings.YOUTUBE_API_DEVELOPER_KEY)
+        self.video_amount = video_amount if video_amount else settings.SEARCH_YOUTUBE_AMOUNT
 
     def search(
             self, search_text: str, latitude: float = None, longitude: float = None, location_radius: int = None,
@@ -56,7 +57,7 @@ class TsdYoutubeClient:
             q=search_text,
             type='video',
             part='id,snippet',
-            maxResults=settings.SEARCH_YOUTUBE_AMOUNT
+            maxResults=self.video_amount
         )
         if latitude and longitude and location_radius:
             params['location'] = '%s,%s' % (latitude, longitude)
