@@ -98,6 +98,10 @@ $('#search-button').click(function () {
         yt_filters['published_before'] = $('#yt-published-before').val();
     }
 
+    if ($('#yt-published-after-checkbox').is(':checked')) {
+        yt_filters['published_after'] = $('#yt-published-after').val();
+    }
+
     // console.log(yt_filters);
     // console.log(vimeo_filters);
     api_search(project_id, search_text, yt_filters, vimeo_filters);
