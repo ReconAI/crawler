@@ -44,7 +44,10 @@ function api_search(project_id, search_text, yt_filters, vimeo_filters) {
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(data_in)
     }).done(function (data) {
-        console.log(data)
+        console.log(data);
+        alert('Search process is started');
+    }).fail(function (jqXHR, exception) {
+        alert(exception);
     });
 }
 // on  add new project

@@ -51,5 +51,4 @@ $('#search-button').click(function () {
     // console.log(yt_filters);
     // console.log(vimeo_filters);
     api_search(project_id, search_text, yt_filters, vimeo_filters);
-    alert('Search process is started');
 })
