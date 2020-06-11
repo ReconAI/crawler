@@ -44,6 +44,9 @@ $('#search-button').click(function () {
     if ($('#yt-video-duration-checkbox').is(':checked')) {
         yt_filters['video_duration'] = $('#yt-video-duration-select').find("option:selected").val();
     }
+    if ($('#yt-license-checkbox').is(':checked')) {
+        yt_filters['video_license'] = $('#yt-license-select').find("option:selected").val();
+    }
 
     // console.log(yt_filters);
     // console.log(vimeo_filters);

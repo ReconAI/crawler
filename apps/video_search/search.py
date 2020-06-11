@@ -50,7 +50,7 @@ class TsdYoutubeClient:
     def search(
             self, search_text: str, latitude: float = None, longitude: float = None, location_radius: int = None,
             published_before=None, published_after=None, safe_search=None, video_category_id:int=None, video_definition=None,
-            video_duration=None
+            video_duration=None, video_license=None
     ):
         params = dict(
             q=search_text,
@@ -73,6 +73,8 @@ class TsdYoutubeClient:
             params['videoDefinition'] = video_definition
         if video_duration:
             params['videoDuration'] = video_duration
+        if video_license:
+            params['videoLicense'] = video_license
 
         # execute request
         try:

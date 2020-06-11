@@ -38,6 +38,12 @@ class VideoDurationEnum(ChoiceEnum):
     ANY = 'any'
 
 
+class YoutubeVideoLicenseEnum(ChoiceEnum):
+    YOUTUBE = 'youtube'
+    CREATIVE_COMMON = 'creativeCommon'
+    ANY = 'any'
+
+
 class SearchVideoYoutubeFiltersSerializer(CommonSerializer):
     latitude = serializers.FloatField(required=False)
     longitude = serializers.FloatField(required=False)
@@ -48,6 +54,7 @@ class SearchVideoYoutubeFiltersSerializer(CommonSerializer):
     video_category_id = serializers.IntegerField(required=False)
     video_definition = serializers.ChoiceField(choices=VideoDefinitionEnum.for_choice(), required=False)
     video_duration = serializers.ChoiceField(choices=VideoDurationEnum.for_choice(), required=False)
+    video_license = serializers.ChoiceField(choices=YoutubeVideoLicenseEnum.for_choice(), required=False)
 
 class SearchVideoSerializer(CommonSerializer):
     search_text = serializers.CharField()
