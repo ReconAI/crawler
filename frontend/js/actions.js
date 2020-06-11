@@ -101,6 +101,10 @@ $('#search-button').click(function () {
     if ($('#yt-published-after-checkbox').is(':checked')) {
         yt_filters['published_after'] = $('#yt-published-after').val();
     }
+    if ($('#yt-safe-search-checkbox').is(':checked')) {
+        yt_filters['safe_search'] = $('#yt-safe-search-select').val();
+    }
+
 
     // console.log(yt_filters);
     // console.log(vimeo_filters);

@@ -47,7 +47,10 @@ class TsdYoutubeClient:
     def __init__(self):
         self.client = build(settings.YOUTUBE_API_SERVICE_NAME, settings.YOUTUBE_API_VERSION, developerKey=settings.YOUTUBE_API_DEVELOPER_KEY)
 
-    def search(self, search_text:str, latitude:float=None, longitude:float=None, location_radius:int=None, published_before=None, published_after=None):
+    def search(
+            self, search_text: str, latitude: float = None, longitude: float = None, location_radius: int = None,
+            published_before=None, published_after=None, safe_search=None
+    ):
         params = dict(
             q=search_text,
             type='video',
@@ -59,9 +62,10 @@ class TsdYoutubeClient:
             params['locationRadius'] = '%skm' % location_radius
         if published_before:
             params['publishedBefore'] = arrow.get(published_before).isoformat()
-
         if published_after:
             params['publishedAfter'] = arrow.get(published_after).isoformat()
+        if safe_search:
+            params['safeSearch'] = safe_search
 
         # execute request
         try:

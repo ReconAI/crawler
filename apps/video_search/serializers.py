@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from apps.video_search.models import VideoProject, VideoSearchResult
+from common.enum import ChoiceEnum
 from common.serializers import CommonSerializer
 
 
@@ -17,12 +18,19 @@ class VideoProjectSerializer(serializers.ModelSerializer):
 class SearchVideoVimeoFiltersSerializer(CommonSerializer):
     video_license = serializers.CharField(source='license')
 
+
+class SafeSearchEnum(ChoiceEnum):
+    STRICT = 'strict'
+    MODERATE = 'moderate'
+    NONE = 'none'
+
 class SearchVideoYoutubeFiltersSerializer(CommonSerializer):
     latitude = serializers.FloatField(required=False)
     longitude = serializers.FloatField(required=False)
     location_radius = serializers.IntegerField(required=False)
     published_before = serializers.DateField(required=False)
     published_after = serializers.DateField(required=False)
+    safe_search = serializers.ChoiceField(choices=SafeSearchEnum.for_choice(), required=False)
 
 class SearchVideoSerializer(CommonSerializer):
     search_text = serializers.CharField()
