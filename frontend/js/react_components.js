@@ -13,7 +13,7 @@ class ResultItem extends React.Component {
     handleVideoLinkClick(event) {
         event.preventDefault();
         // todo: think about React approach for this place
-        $('#quickview .modal-body').html('<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="' + this.props.item.embedded_link + '" allowfullscreen></iframe></div>');
+        $('#quickview .modal-body').html('<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" id="embed-video" src="' + this.props.item.embedded_link + '" allowfullscreen></iframe></div>');
         $('#quickview').modal({show:true});
     }
 
