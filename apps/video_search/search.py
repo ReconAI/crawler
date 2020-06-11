@@ -22,7 +22,7 @@ class TsdVimeoClient:
             secret=settings.VIMEO_CLIENT_SECRET
         )
 
-    def search(self, search_text:str, video_license=None):
+    def search(self, search_text:str, video_license=None, video_duration=None):
         """
         https://developer.vimeo.com/api/reference/videos#search_videos
         :param vimeo_params: are "query", "per_page",...
@@ -31,8 +31,15 @@ class TsdVimeoClient:
 
         params = copy.deepcopy(self.default_params)
         params['query'] = search_text
+        vimeo_filters = []
         if video_license:
-            params['filter'] = video_license
+            vimeo_filters.append(video_license) # strange Vimeo format for license
+        if video_duration:
+            vimeo_filters.append('duration')
+            params['filter_duration'] = video_duration
+
+        # turn on filters
+        params['params'] = ','.join(vimeo_filters)
 
         response = self.client.get('/videos', params=params)
 

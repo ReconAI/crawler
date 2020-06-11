@@ -20,6 +20,9 @@ $('#search-button').click(function () {
     if ($('#license-checkbox').is(':checked')){
         vimeo_filters['video_license'] = $('#license-select').find("option:selected").val();
     }
+    if ($('#vimeo-video-duration-checkbox').is(':checked')){
+        vimeo_filters['video_duration'] = $('#vimeo-video-duration').val();
+    }
 
     if ($('#yt-location-checkbox').is(':checked')) {
         yt_filters['latitude'] = $('#yt-latitude').val();
