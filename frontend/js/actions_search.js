@@ -38,6 +38,9 @@ $('#search-button').click(function () {
     if ($('#yt-video-category-checkbox').is(':checked')) {
         yt_filters['video_category_id'] = $('#yt-video-category-select').find("option:selected").val();
     }
+    if ($('#yt-video-definition-checkbox').is(':checked')) {
+        yt_filters['video_definition'] = $('#yt-video-definition-select').find("option:selected").val();
+    }
 
     // console.log(yt_filters);
     // console.log(vimeo_filters);

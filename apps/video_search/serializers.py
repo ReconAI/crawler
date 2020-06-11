@@ -24,6 +24,13 @@ class SafeSearchEnum(ChoiceEnum):
     MODERATE = 'moderate'
     NONE = 'none'
 
+
+class VideoDefinitionEnum(ChoiceEnum):
+    ANY = 'any'
+    STANDARD = 'standard'
+    HIGH = 'high'
+
+
 class SearchVideoYoutubeFiltersSerializer(CommonSerializer):
     latitude = serializers.FloatField(required=False)
     longitude = serializers.FloatField(required=False)
@@ -32,6 +39,7 @@ class SearchVideoYoutubeFiltersSerializer(CommonSerializer):
     published_after = serializers.DateField(required=False)
     safe_search = serializers.ChoiceField(choices=SafeSearchEnum.for_choice(), required=False)
     video_category_id = serializers.IntegerField(required=False)
+    video_definition = serializers.ChoiceField(choices=VideoDefinitionEnum.for_choice(), required=False)
 
 class SearchVideoSerializer(CommonSerializer):
     search_text = serializers.CharField()
