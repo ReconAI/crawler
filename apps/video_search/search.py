@@ -1,5 +1,7 @@
 import logging
 import copy
+
+import arrow
 from googleapiclient.discovery import build
 from django.conf import settings
 import vimeo
@@ -45,7 +47,7 @@ class TsdYoutubeClient:
     def __init__(self):
         self.client = build(settings.YOUTUBE_API_SERVICE_NAME, settings.YOUTUBE_API_VERSION, developerKey=settings.YOUTUBE_API_DEVELOPER_KEY)
 
-    def search(self, search_text:str, latitude:float=None, longitude:float=None, location_radius:int=None):
+    def search(self, search_text:str, latitude:float=None, longitude:float=None, location_radius:int=None, published_before=None):
         params = dict(
             q=search_text,
             type='video',
@@ -55,5 +57,12 @@ class TsdYoutubeClient:
         if latitude and longitude and location_radius:
             params['location'] = '%s,%s' % (latitude, longitude)
             params['locationRadius'] = '%skm' % location_radius
-        search_response = self.client.search().list(**params).execute()
+        if published_before:
+            params['publishedBefore'] = arrow.get(published_before).isoformat()
+        try:
+            print('Params=%s' % params)
+            search_response = self.client.search().list(**params).execute()
+        except Exception as e:
+            # add some code here
+            raise
         return search_response

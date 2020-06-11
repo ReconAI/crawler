@@ -94,6 +94,10 @@ $('#search-button').click(function () {
         yt_filters['longitude'] = $('#yt-longitude').val();
         yt_filters['location_radius'] = $('#yt-location-radius').val();
     }
+    if ($('#yt-published-before-checkbox').is(':checked')) {
+        yt_filters['published_before'] = $('#yt-published-before').val();
+    }
+
     // console.log(yt_filters);
     // console.log(vimeo_filters);
     api_search(project_id, search_text, yt_filters, vimeo_filters);

@@ -21,6 +21,7 @@ class SearchVideoYoutubeFiltersSerializer(CommonSerializer):
     latitude = serializers.FloatField(required=False)
     longitude = serializers.FloatField(required=False)
     location_radius = serializers.IntegerField(required=False)
+    published_before = serializers.DateField(required=False)
 
 class SearchVideoSerializer(CommonSerializer):
     search_text = serializers.CharField()
