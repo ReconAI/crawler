@@ -18,6 +18,7 @@ class VideoProjectSerializer(serializers.ModelSerializer):
 class SearchVideoVimeoFiltersSerializer(CommonSerializer):
     video_license = serializers.CharField(required=False)
     video_duration = serializers.IntegerField(required=False)
+    minimum_likes = serializers.IntegerField(required=False)
 
 class SafeSearchEnum(ChoiceEnum):
     STRICT = 'strict'
