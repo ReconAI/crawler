@@ -8,7 +8,15 @@ class ResultItem extends React.Component {
         this.handlePauseClick = this.handlePauseClick.bind(this);
         this.handleConfirmClick = this.handleConfirmClick.bind(this);
         this.handleDiscardClick = this.handleDiscardClick.bind(this);
+        this.handleVideoLinkClick = this.handleVideoLinkClick.bind(this);
     }
+    handleVideoLinkClick(event) {
+        event.preventDefault();
+        // todo: think about React approach for this place
+        $('#quickview .modal-body').html('<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="//www.youtube.com/embed/YE7VzlLtp-4" allowfullscreen></iframe></div>');
+        $('#quickview').modal({show:true});
+    }
+
     handlePlayClick() {
         let video_id = document.getElementById("video_"+this.props.item.id);
         video_id.play();
@@ -54,7 +62,7 @@ class ResultItem extends React.Component {
                 <div className='col-sm-6'>
                     <div className='row'>
                         <div className='col-sm-10'>
-                            <p className='h5'><a href={this.props.item.source_link}>{this.props.item.source_link}</a></p>
+                            <p className='h5'><a href={this.props.item.source_link} onClick={this.handleVideoLinkClick}>{this.props.item.source_link}</a></p>
                             <div className='embed-responsive embed-responsive-16by9'>
                                 <video id={"video_"+this.props.item.id} poster={poster}>
                                  <source src={this.props.item.preview_link} type="video/ogg"/>

@@ -112,13 +112,4 @@ $('#search-button').click(function () {
     alert('Search process is started');
 })
 
-// filters
-$('.input-group.date').datepicker({
-    format: "yyyy-mm-dd",
-    clearBtn: true
-});
 
-$('.input-group .date').datepicker({
-    format: "yyyy-mm-dd",
-    clearBtn: true
-});

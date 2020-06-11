@@ -42,3 +42,10 @@
     width: 40% !important;
     margin-bottom: 2vh;
 }
+
+@media (min-width: 768px) {
+  .tsd-modal-xl {
+    width: 90%;
+   max-width:1200px;
+  }
+}
