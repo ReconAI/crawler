@@ -38,6 +38,8 @@ class SearchVideoSerializer(CommonSerializer):
     yt_filters = SearchVideoYoutubeFiltersSerializer()
 
 class SearchVideoResultsSerializer(serializers.ModelSerializer):
+    embedded_link = serializers.SerializerMethodField()
+
     class Meta:
         model = VideoSearchResult
         fields = (
@@ -49,7 +51,18 @@ class SearchVideoResultsSerializer(serializers.ModelSerializer):
             'duration',
             'width',
             'height',
+            'embedded_link'
         )
+    def get_embedded_link(self, instance):
+        if 'vimeo.com' in instance.source_link:
+            video_part = instance.source_link.rsplit('/')[-1]
+            embedded_link = 'https://player.vimeo.com/video/%s' % video_part
+            return embedded_link
+        else:
+            video_part = instance.source_link.rsplit('https://www.youtube.com/watch?v=')[-1]
+            embedded_link = 'https://www.youtube.com/embed/%s' % video_part
+            return embedded_link
+
 
 
 class SearchVideoResultStatusSerializer(serializers.ModelSerializer):
