@@ -26,6 +26,9 @@ $('#search-button').click(function () {
     if ($('#vimeo-minimum-likes-checkbox').is(':checked')){
         vimeo_filters['minimum_likes'] = $('#vimeo-minimum-likes').val();
     }
+    if ($('#trending-checkbox').is(':checked')){
+        vimeo_filters['trending'] = true;
+    }
 
     if ($('#yt-location-checkbox').is(':checked')) {
         yt_filters['latitude'] = $('#yt-latitude').val();

@@ -22,7 +22,7 @@ class TsdVimeoClient:
             secret=settings.VIMEO_CLIENT_SECRET
         )
 
-    def search(self, search_text:str, video_license=None, video_duration=None, minimum_likes=None):
+    def search(self, search_text:str, video_license=None, video_duration=None, minimum_likes=None, trending=None):
         """
         https://developer.vimeo.com/api/reference/videos#search_videos
         :param vimeo_params: are "query", "per_page",...
@@ -40,6 +40,8 @@ class TsdVimeoClient:
         if minimum_likes:
             vimeo_filters.append('minimum_likes')
             params['filter_minimum_likes'] = minimum_likes
+        if trending:
+            vimeo_filters.append('trending')
 
         # turn on filters
         params['params'] = ','.join(vimeo_filters)
