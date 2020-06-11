@@ -18,7 +18,7 @@ $('#search-button').click(function () {
     let video_amount = $('#video-amount-select').find("option:selected").val();
 
     if ($('#license-checkbox').is(':checked')){
-        vimeo_filters['license'] = $('#license-select').find("option:selected").val();
+        vimeo_filters['video_license'] = $('#license-select').find("option:selected").val();
     }
 
     if ($('#yt-location-checkbox').is(':checked')) {

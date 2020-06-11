@@ -22,14 +22,17 @@ class TsdVimeoClient:
             secret=settings.VIMEO_CLIENT_SECRET
         )
 
-    def search(self, vimeo_params):
+    def search(self, search_text:str, video_license=None):
         """
         https://developer.vimeo.com/api/reference/videos#search_videos
         :param vimeo_params: are "query", "per_page",...
         :return:
         """
+
         params = copy.deepcopy(self.default_params)
-        params.update(vimeo_params)
+        params['query'] = search_text
+        if video_license:
+            params['filter'] = video_license
 
         response = self.client.get('/videos', params=params)
 

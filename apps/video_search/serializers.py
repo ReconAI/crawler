@@ -16,7 +16,7 @@ class VideoProjectSerializer(serializers.ModelSerializer):
         read_only_fields = ('id',)
 
 class SearchVideoVimeoFiltersSerializer(CommonSerializer):
-    video_license = serializers.CharField(source='license')
+    video_license = serializers.CharField()
 
 
 class SafeSearchEnum(ChoiceEnum):
@@ -59,7 +59,7 @@ class SearchVideoYoutubeFiltersSerializer(CommonSerializer):
 class SearchVideoSerializer(CommonSerializer):
     search_text = serializers.CharField()
     video_amount = serializers.IntegerField()
-    #vimeo_filters = SearchVideoVimeoFiltersSerializer()
+    vimeo_filters = SearchVideoVimeoFiltersSerializer()
     yt_filters = SearchVideoYoutubeFiltersSerializer()
 
 class SearchVideoResultsSerializer(serializers.ModelSerializer):
