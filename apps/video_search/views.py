@@ -1,4 +1,4 @@
-from apps.video_search.models import VideoProject, VideoSearchResult
+from apps.video_search.models import VideoProject, VideoSearchResult, VideoStatusEnum
 from apps.video_search.search import TsdVimeoClient, TsdYoutubeClient
 from apps.video_search.serializers import VideoProjectSerializer, SearchVideoSerializer, SearchVideoResultsSerializer, \
     SearchVideoResultStatusSerializer
@@ -109,7 +109,7 @@ class SearchVideoResultsApi(CommonGenericView):
     serializer_class = SearchVideoResultsSerializer
 
     def get_queryset(self):
-        return VideoSearchResult.objects.filter(project_id=self.kwargs['project_id'])
+        return VideoSearchResult.objects.filter(project_id=self.kwargs['project_id']).exclude(status=VideoStatusEnum.DISCARDED)
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)

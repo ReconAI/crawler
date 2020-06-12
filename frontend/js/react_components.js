@@ -9,6 +9,7 @@ class ResultItem extends React.Component {
         this.handleConfirmClick = this.handleConfirmClick.bind(this);
         this.handleDiscardClick = this.handleDiscardClick.bind(this);
         this.handleVideoLinkClick = this.handleVideoLinkClick.bind(this);
+        this.state = {'isHidden': false};
     }
     handleVideoLinkClick(event) {
         event.preventDefault();
@@ -46,6 +47,7 @@ class ResultItem extends React.Component {
             console.log(data);
             alert('Video is discarded')
         });
+        this.setState({'isHidden': true});
     }
 
   render () {
@@ -55,6 +57,9 @@ class ResultItem extends React.Component {
     }
     else {
         poster='';
+    }
+    if (this.state.isHidden) {
+        return null
     }
 
     return (
