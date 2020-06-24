@@ -35,4 +35,4 @@ with conn.prefix('cd /home/ubuntu/crawler/'):
 
     conn.run(f'docker pull {image_registry_url}/{workers_build_tag_name}', echo=True)
     worker_command = '"celery" "-A" "crawler" "worker" "--loglevel=INFO" "-Q" "prod-crawler-download-video-file-queue"'
-    conn.run(f'docker run --restart=always -d {image_registry_url}/{workers_build_tag_name} {worker_command}', echo=True)
+    conn.run(f'docker run --restart=always --cpu-shares=512 -d {image_registry_url}/{workers_build_tag_name} {worker_command}', echo=True)
