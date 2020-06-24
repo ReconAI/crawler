@@ -31,7 +31,7 @@ with conn.prefix('cd /home/ubuntu/crawler/'):
     conn.run('docker stop $(docker ps -a -q)', echo=True)  # stop all containers
     conn.run(f'docker rmi -f {image_registry_url}/{build_tag_name}', echo=True)  # delete old image
     conn.run(f'docker pull {image_registry_url}/{build_tag_name}', echo=True)
-    conn.run(f'docker run --restart=always -d -p 8000:8000 {image_registry_url}/{build_tag_name}', echo=True)
+    conn.run(f'docker run --cpu-shares=1024 --restart=always -d -p 8000:8000 {image_registry_url}/{build_tag_name}', echo=True)
 
     conn.run(f'docker pull {image_registry_url}/{workers_build_tag_name}', echo=True)
     worker_command = '"celery" "-A" "crawler" "worker" "--loglevel=INFO" "-Q" "prod-crawler-download-video-file-queue"'
