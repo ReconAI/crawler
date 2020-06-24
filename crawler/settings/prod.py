@@ -29,3 +29,11 @@ CELERY_TASK_DEFAULT_QUEUE = 'prod-celery-default'
 CELERY_TASK_ROUTES = {
     'apps.video_search.tasks.*': {'queue': SQS_CRAWLER_DOWNLOAD_VIDEO_FILE_QUEUE_NAME}
 }
+
+PROXIES = [
+    'http://LF25xM2mle:vpdnAAoiIs@45.156.150.26:57969'
+    'http://LF25xM2mle:vpdnAAoiIs@45.156.150.22:57969',
+    'http://LF25xM2mle:vpdnAAoiIs@45.156.150.11:57969',
+    'http://LF25xM2mle:vpdnAAoiIs@45.156.150.25:57969',
+    'http://LF25xM2mle:vpdnAAoiIs@45.156.150.24:57969',
+]
