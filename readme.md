@@ -11,6 +11,15 @@ All created files are stored on AWS S3.
 
 The project uses AWS EC2, AWS SQS, AWS S3, AWS ECR, AWS RDS
 
+## Database structure
+This project is based on django.
+The database structure can be divided into 2 parts:
+1) service tables required by django
+2) tables that store the data of our business logic
+
+It is the 2. part:  
+![alt db_structure](docs/db_structure.png)
+
 ### Installation to development
 
 1) Create virtual environment (`python3 -m venv ~/my_env_dir`)
